@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta content="utf-8" />
+	<title><ui:insert name="titulo_cabecalho"></ui:insert></title>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+</h:head>
+
+<h:body>
+	<div id="cabecalho">
+		<h1>
+			<ui:insert name="titulo"></ui:insert>
+		</h1>
+		<p:growl id="messages" showDetail="true">
+			<p:autoUpdate></p:autoUpdate>
+		</p:growl>
+		<h:form style="margin-bottom:20px;">
+			<p:menuButton value="Menu" rendered="#{funcionario != null}">
+				<p:menuitem value="Veiculos" outcome="veiculos.xhtml" icon="ui-icon-plusthick"/>
+				<p:menuitem value="Funcionarios" icon="ui-icon-person"/>
+				<p:menuitem value="Usuários" icon="ui-icon-person" />
+				<p:separator />
+				<p:menuitem value="Logout" action="#{loginBean.efetuarLogout}" icon="ui-icon-home" />
+			</p:menuButton>
+		</h:form>
+	</div>
+
+	<div id="conteudo">
+		<ui:insert name="conteudo"></ui:insert>
+	</div>
+
+	<div id="rodape"></div>
+
+</h:body>
+
+</html>

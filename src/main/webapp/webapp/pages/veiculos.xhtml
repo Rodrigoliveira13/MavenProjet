@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<ui:composition template="../templates/_template.xhtml">
+
+	<ui:define name="titulo_cabecalho">Veiculos</ui:define>
+
+	<ui:define name="titulo">Cadastro de Veículos</ui:define>
+
+	<ui:define name="conteudo">
+		<p:fieldset legend="Veículo">
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel for="proprietario" value="Proprietario" />
+					<p:inputText id="proprietario"
+						value="#{veiculoBean.veiculo.proprietario}" />
+					<p:outputLabel for="renavam" value="Renavam" />
+					<p:inputText id="renavam" maxlength="11"
+						value="#{veiculoBean.veiculo.renavam}" />
+					<p:outputLabel for="placa" value="Placa" />
+					<p:inputMask id="placa" mask="aaa-9999"
+						value="#{veiculoBean.veiculo.placa}" />
+					<p:outputLabel for="chassi" value="Chassi" />
+					<p:inputText id="chassi" maxlength="17"
+						value="#{veiculoBean.veiculo.chassi}" />
+					<p:outputLabel for="marca" value="Marca" />
+					<p:inputText id="marca" value="#{veiculoBean.veiculo.marca}" />
+					<p:outputLabel for="modelo" value="Modelo" />
+					<p:inputText id="modelo" value="#{veiculoBean.veiculo.modelo}" />
+					<p:outputLabel for="ano" value="Ano" />
+					<p:inputText id="ano" maxlength="4"
+						value="#{veiculoBean.veiculo.ano}" />
+					<p:outputLabel for="locacao" value="Valor Locacao" />
+					<p:inputNumber id="locacao" symbol="R$ " symbolPosition="p"
+						decimalSeparator="," thousandSeparator="."
+						value="#{veiculoBean.veiculo.valorLocacao}" />
+					<p:outputLabel for="data" value="Data Aquisição" />
+					<p:calendar id="data" pattern="dd/MM/yyyy"
+						timeZone="America/Sao_Paulo" mask="true"
+						value="#{veiculoBean.veiculo.dataAquisicao}" />
+					<p:outputLabel for="cor" value="Cor" />
+					<p:inputText id="cor" value="#{veiculoBean.veiculo.cor}" />
+					<p:outputLabel for="portas" value="Numero de Portas" />
+					<p:inputText id="portas" maxlength="1"
+						value="#{veiculoBean.veiculo.numeroPortas}" />
+					<p:outputLabel for="motor" value="Motor" />
+					<p:inputText id="motor" value="#{veiculoBean.veiculo.motor}" />
+					<p:outputLabel for="cambio" value="Cambio" />
+					<p:selectOneMenu id="cambio" value="#{veiculoBean.veiculo.cambio}">
+						<f:selectItem itemDisabled="true" itemLabel="Selecione" />
+						<f:selectItem itemValue="Manual" itemLabel="Manual" />
+						<f:selectItem itemValue="Automático" itemLabel="Automático" />
+					</p:selectOneMenu>
+					<p:outputLabel for="combustivel" value="Combustível" />
+					<p:selectOneMenu id="combustivel"
+						value="#{veiculoBean.veiculo.combustivel}">
+						<f:selectItem itemDisabled="true" itemLabel="Selecione" />
+						<f:selectItem itemValue="Álcool" itemLabel="Álcool" />
+						<f:selectItem itemValue="Gasolina" itemLabel="Gasolina" />
+						<f:selectItem itemValue="Flex (Álcool/Gasolina)"
+							itemLabel="Flex (Álcool/Gasolina)" />
+						<f:selectItem itemValue="Gás" itemLabel="Gás" />
+						<f:selectItem itemValue="Tetra Fuel" itemLabel="Tetra Fuel" />
+					</p:selectOneMenu>
+					<p:outputLabel for="tanque" value="Nivel Tanque" />
+					<p:inputText id="tanque" value="#{veiculoBean.veiculo.nivelTanque}" />
+					<p:outputLabel for="km" value="Kilometragem" />
+					<p:inputText id="km" value="#{veiculoBean.veiculo.kmAtual}" />
+					<p:outputLabel for="disponibilidade" value="Disponibilidade" />
+					<p:selectOneMenu id="disponibilidade"
+						value="#{veiculoBean.veiculo.disponibilidade}">
+						<f:selectItem itemDisabled="true" itemLabel="Selecione" />
+						<f:selectItem itemValue="ALUGADO" itemLabel="Alugado" />
+						<f:selectItem itemValue="DISPONIVEL" itemLabel="Disponível" />
+					</p:selectOneMenu>
+					<p:outputLabel for="observacao" value="Observação" />
+					<p:inputTextarea id="observacao" rows="5" cols="80"
+						value="#{veiculoBean.veiculo.observacao}" />
+					<p:commandButton value="Cadastrar"
+						action="#{veiculoBean.cadastrarVeiculo}" update="@form" />
+				</h:panelGrid>
+				<p:separator />
+				<h2>Lista de Veículos</h2>
+				<p:dataTable id="tableCarros" var="veiculo" value="#{veiculoBean.veiculos}">
+					<p:column headerText="Id">
+						<h:outputText value="#{veiculo.id}" />
+					</p:column>
+
+					<p:column headerText="Ano">
+						<h:outputText value="#{veiculo.ano}" />
+					</p:column>
+
+					<p:column headerText="Cambio">
+						<h:outputText value="#{veiculo.cambio}" />
+					</p:column>
+
+					<p:column headerText="Cor">
+						<h:outputText value="#{veiculo.cor}" />
+					</p:column>
+
+					<p:column headerText="Disponibilidade">
+						<h:outputText value="#{veiculo.disponibilidade}" />
+					</p:column>
+
+					<p:column headerText="Marca">
+						<h:outputText value="#{veiculo.marca}" />
+					</p:column>
+
+					<p:column headerText="Modelo">
+						<h:outputText value="#{veiculo.modelo}" />
+					</p:column>
+
+					<p:column headerText="Valor Locação">
+						<h:outputText value="#{veiculo.valorLocacao}" />
+					</p:column>
+
+					<p:column headerText="Data Aquisição">
+						<h:outputText value="#{veiculo.dataAquisicao}" />
+					</p:column>
+
+					<p:column headerText="Numero Portas">
+						<h:outputText value="#{veiculo.numeroPortas}" />
+					</p:column>
+
+					<p:column headerText="Alterar">
+						<p:commandButton icon="ui-icon-plusthick"
+							style="margin-right:20px;" title="Icon Only"
+							action="#{veiculoBean.alterarVeiculo(veiculo)}" update="@form"/>
+					</p:column>
+
+					<p:column headerText="Remover">
+ 						<p:commandButton icon="ui-icon-closethick"
+							style="margin-right:20px;" title="Icon Only"
+							action="#{veiculoBean.deletarVeiculo(veiculo)}" update="@form"/>
+					</p:column>
+						
+				</p:dataTable>
+			</h:form>
+		</p:fieldset>
+	</ui:define>
+</ui:composition>
+
+</html>

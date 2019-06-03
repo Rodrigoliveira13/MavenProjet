@@ -1,0 +1,6 @@
+<!-- WebContent/WEB-INF/beans.xml -->
+<beans>
+	<interceptors>
+		<class>br.com.aula.util.GerenciadorTransacao</class>
+	</interceptors>
+</beans>
